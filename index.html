@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>uiCookies:Explorer &mdash; Free Bootstrap Theme, Free Responsive Bootstrap Website Template</title>
+    <title>I Like</title>
     <meta name="description" content="Free Bootstrap Theme by uicookies.com">
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
     
@@ -25,7 +25,7 @@
 
   <header role="banner" class="probootstrap-header">
     <div class="container">
-        <a href="index.html" class="probootstrap-logo">Explorer<span>.</span></a>
+        <a href="index.html" class="probootstrap-logo"><span id="logo"></span><span>.</span></a>
         
         <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
         <div class="mobile-menu-overlay"></div>
@@ -40,12 +40,12 @@
           <div class="extra-text visible-xs"> 
             <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
             <h5>Address</h5>
-            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+            <p id="address"></p>
             <h5>Connect</h5>
             <ul class="social-buttons">
-              <li><a href="#"><i class="icon-twitter"></i></a></li>
-              <li><a href="#"><i class="icon-facebook2"></i></a></li>
-              <li><a href="#"><i class="icon-instagram2"></i></a></li>
+              <!-- <li><a href="#"><i class="icon-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-facebook2"></i></a></li> -->
+              <li><a class="instagram_url" href="" target="_blank"><i class="icon-instagram2"></i></a></li>
             </ul>
           </div>
         </nav>
@@ -126,7 +126,33 @@
           </a>
         </div>
       </div>
-      
+
+      <div class="row probootstrap-gutter16">
+        <div class="col-md-5 probootstrap-animate" data-animate-effect="fadeIn">
+          <a href="single-page.html" class="img-bg" style="background-image: url(img/img_3.jpg);">
+            <div class="probootstrap-photo-details">
+              <h2>Earthly Clay</h2>
+              <p>Landscape</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
+          <a href="single-page.html" class="img-bg" style="background-image: url(img/img_5.jpg);">
+            <div class="probootstrap-photo-details">
+              <h2>Man Captured</h2>
+              <p>Landscape</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">
+          <a href="single-page.html" class="img-bg" style="background-image: url(img/img_4.jpg);">
+            <div class="probootstrap-photo-details">
+              <h2>Mountain with pines</h2>
+              <p>Landscape</p>
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -136,10 +162,10 @@
         <div class="col-md-12">
           <p class="probootstrap-copyright">&copy; 2017 <a href="https://uicookies.com/">uiCookies:Explorer</a> All Rights Reserved.</p>
           <ul class="probootstrap-social">
-            <li><a href="#"><i class="icon-twitter"></i></a></li>
-            <li><a href="#"><i class="icon-facebook2"></i></a></li>
-            <li><a href="#"><i class="icon-instagram2"></i></a></li>
-            <li><a href="#"><i class="icon-google-plus"></i></a></li>
+            <!-- <li><a href="#"><i class="icon-twitter"></i></a></li>
+            <li><a href="#"><i class="icon-facebook2"></i></a></li> -->
+            <li><a class="instagram_url" href="" target="_blank"><i class="icon-instagram2"></i></a></li>
+            <!-- <li><a href="#"><i class="icon-google-plus"></i></a></li> -->
           </ul>
         </div>
       </div>
@@ -154,6 +180,38 @@
   <script src="js/scripts.min.js"></script>
   <script src="js/main.min.js"></script>
   <script src="js/custom.js"></script>
-
+  <script src="js/av-min.js"></script>
+  <script>
+    var { Query, User } = AV;
+    AV.init({
+      appId: "GQYoAfWH0A2DanzVcWc62zKt-MdYXbMMI",
+      appKey: "Mp24E60jxscWbErP5wYBCjgA",
+    });
+    $(function(){
+      var query = new AV.Query('setting');
+      query.select(['title','description','instagram','address']);
+      query.first().then(function (todo) {
+        var title = todo.get('title'); 
+        var description = todo.get('description'); 
+        var instagram = todo.get('instagram'); 
+        var address = todo.get('address'); 
+        $("title").text(title);
+        $("#logo").text(title);
+        $("#address").text(address);
+        $("meta[name='description']").attr('content',description);
+        $(".instagram_url").attr("href","https://www.instagram.com/blackholexgirl/");
+      });
+    })
+    // var Setting = AV.Object.extend('setting');
+    // var setting = new Setting();
+    // setting.set('description', 'I Like You Like');
+    // // 将对象保存到云端
+    // setting.save().then(function (todo) {
+    //   // 成功保存之后，执行其他逻辑
+    //   console.log('保存成功。objectId：' + todo.id);
+    // }, function (error) {
+    //   // 异常处理
+    // });
+  </script>
   </body>
 </html>
