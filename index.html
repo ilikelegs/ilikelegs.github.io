@@ -182,15 +182,17 @@
   <script src="js/custom.js"></script>
   <script src="js/av-min.js"></script>
   <script src="js/public.js"></script>
-    <!-- // var Setting = AV.Object.extend('setting');
-    // var setting = new Setting();
-    // setting.set('description', 'I Like You Like');
-    // // 将对象保存到云端
-    // setting.save().then(function (todo) {
-    //   // 成功保存之后，执行其他逻辑
-    //   console.log('保存成功。objectId：' + todo.id);
-    // }, function (error) {
-    //   // 异常处理
-    // }); -->
+  <script>
+    $(document).ready(function () {
+      $.ajax({
+        url: 'data/pictures.json',
+        async: false,
+        dataType: "json",
+        success: function (data) {
+          console.log(data);
+        }
+      });
+    });
+  </script>
   </body>
 </html>
