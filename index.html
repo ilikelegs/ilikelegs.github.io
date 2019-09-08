@@ -62,31 +62,31 @@
         </div>
       </div>
 
-      <div class="row probootstrap-gutter16">
-        <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">
-          <a href="single-page.html" class="img-bg" style="background-image: url(img/img_3.jpg);">
-            <div class="probootstrap-photo-details">
-              <h2>Earthly Clay</h2>
-              <p>Landscape</p>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">
-          <a href="single-page.html" class="img-bg" style="background-image: url(img/img_5.jpg);">
-            <div class="probootstrap-photo-details">
-              <h2>Man Captured</h2>
-              <p>Landscape</p>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">
-          <a href="single-page.html" class="img-bg" style="background-image: url(img/img_4.jpg);">
-            <div class="probootstrap-photo-details">
-              <h2>Mountain with pines</h2>
-              <p>Landscape</p>
-            </div>
-          </a>
-        </div>
+      <div id="content">
+          <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">
+            <a href="photos/1.jpg" class="img-bg" style="background-image: url(photos/1.jpg);">
+              <div class="probootstrap-photo-details">
+                <h2>Earthly Clay</h2>
+                <p>Landscape</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">
+            <a href="single-page.html" class="img-bg" style="background-image: url(img/img_5.jpg);">
+              <div class="probootstrap-photo-details">
+                <h2>Man Captured</h2>
+                <p>Landscape</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">
+            <a href="single-page.html" class="img-bg" style="background-image: url(img/img_4.jpg);">
+              <div class="probootstrap-photo-details">
+                <h2>Mountain with pines</h2>
+                <p>Landscape</p>
+              </div>
+            </a>
+          </div>
       </div>
 
       <!-- <div class="row probootstrap-gutter16">
@@ -205,23 +205,37 @@
   
 
   <script src="js/scripts.min.js"></script>
-  <script src="js/main.min.js"></script>
-  <script src="js/custom.js"></script>
   <script src="js/av-min.js"></script>
   <script src="js/public.js"></script>
   <script>
     $(document).ready(function () {
       $.ajax({
+        //url: 'https://ilikelegs.github.io/data/photos.json',
         url: 'data/photos.json',
         async: false,
         dataType: "json",
         success: function (data) {
-          
-          console.log(data);
+          if(data.length>0){
+            var html = "";
+            for(var i=0;i<data.length;i++){
+              html += '<div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">' + 
+                        '<a href="'+data[i].href+'" class="img-bg" style="background-image: url('+data[i].url+');">' + 
+                          '<div class="probootstrap-photo-details">' + 
+                            '<h2>'+data[i].title+'</h2>' + 
+                            '<p>'+data[i].content+'</p>' + 
+                          '</div>' + 
+                        '</a>' + 
+                      '</div>';
+            }
+            $("#content").html(html);
+          }
+          //console.log(data);
           
         }
       });
     });
   </script>
+  <script src="js/main.min.js"></script>
+  <script src="js/custom.js"></script>
   </body>
 </html>
