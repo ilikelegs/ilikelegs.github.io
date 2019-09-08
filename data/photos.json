@@ -1,6 +1,5 @@
-{
-    "data":[
-        {"title":"333","url":"","content":""},
-        {"title":"333","url":"","content":""}
-    ]
-}
+[
+    {"title":"nice","url":"photos/1.jpg","href":"photos/1.jpg","content":""},
+    {"title":"good","url":"photos/2.jpg","href":"photos/1.jpg","content":""},
+    {"title":"grate","url":"photos/3.jpg","href":"photos/1.jpg","content":""}
+]

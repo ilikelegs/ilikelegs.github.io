@@ -64,6 +64,33 @@
 
       <div class="row probootstrap-gutter16">
         <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">
+          <a href="single-page.html" class="img-bg" style="background-image: url(img/img_3.jpg);">
+            <div class="probootstrap-photo-details">
+              <h2>Earthly Clay</h2>
+              <p>Landscape</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">
+          <a href="single-page.html" class="img-bg" style="background-image: url(img/img_5.jpg);">
+            <div class="probootstrap-photo-details">
+              <h2>Man Captured</h2>
+              <p>Landscape</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">
+          <a href="single-page.html" class="img-bg" style="background-image: url(img/img_4.jpg);">
+            <div class="probootstrap-photo-details">
+              <h2>Mountain with pines</h2>
+              <p>Landscape</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- <div class="row probootstrap-gutter16">
+        <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">
           <a href="single-page.html" class="img-bg" style="background-image: url(img/img_1.jpg);">
             <div class="probootstrap-photo-details">
               <h2>A turquoise colored sea</h2>
@@ -152,7 +179,7 @@
             </div>
           </a>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -185,11 +212,13 @@
   <script>
     $(document).ready(function () {
       $.ajax({
-        url: 'https://ilikelegs.github.io/data/photos.json',
+        url: 'data/photos.json',
         async: false,
         dataType: "json",
         success: function (data) {
+          
           console.log(data);
+          
         }
       });
     });
