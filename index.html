@@ -130,7 +130,7 @@
       var utc = toUtc(date);
       var utcDate = toUtcDate(date);
       var query = new AV.Query('access');
-      query.greaterThanOrEqualTo('utc', utcDate).equalTo('ip', returnCitySN["cip"]);
+      query.greaterThanOrEqualTo('utc', utcDate).equalTo('ip', returnCitySN["cip"]).equalTo('web', 'I Like');
       query.count().then(function (count) {
         if(count==0){
           //每天记录一次访问记录
