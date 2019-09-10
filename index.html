@@ -123,6 +123,35 @@
   </script>
   <script src="js/main.min.js"></script>
   <script src="js/custom.js"></script>
+  <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+  <script>
+    $(function(){
+      var date = new Date();
+      var utc = toUtc(date);
+      var utcDate = toUtcDate(date);
+      var query = new AV.Query('access');
+      query.greaterThanOrEqualTo('utc', utcDate).equalTo('ip', returnCitySN["cip"]);
+      query.count().then(function (count) {
+        if(count==0){
+          //每天记录一次访问记录
+          var Todo = AV.Object.extend('access');
+          // 构建对象
+          var todo = new Todo();
+          // 为属性赋值
+          todo.set('web','I Like');
+          todo.set('ip',returnCitySN["cip"]);
+          todo.set('Location', returnCitySN["cname"]);
+          todo.set('utc', utc);
+          // 将对象保存到云端
+          todo.save().then(function (todo) {
+            // 成功保存之后，执行其他逻辑
+          }, function (error) {
+            // 异常处理
+          });
+        }
+      });
+    })
+  </script>
   <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278014723'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1278014723%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
   </body>
 </html>

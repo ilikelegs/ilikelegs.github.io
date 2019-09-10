@@ -18,3 +18,27 @@ $(function(){
     $(".instagram_url").attr("href","https://www.instagram.com/blackholexgirl/");
     });
 })
+
+//utc时间
+function toUtc(date){
+    var y =  date.getUTCFullYear();   
+    var m = date.getUTCMonth() ;
+    var d = date.getUTCDate();
+    var h= date.getUTCHours();
+    var M = date.getUTCMinutes();
+    var s = date.getUTCSeconds();
+    var utc = new Date(y,m,d,h,M,s);
+    return utc;
+}
+
+//utc日期
+function toUtcDate(date){
+    var y =  date.getUTCFullYear();   
+    var m = date.getUTCMonth() ;
+    var d = date.getUTCDate();
+    var h= date.getUTCHours();
+    var M = date.getUTCMinutes();
+    var s = date.getUTCSeconds();
+    var utcDate = new Date(y,m,d);
+    return utcDate;
+}
