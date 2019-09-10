@@ -36,7 +36,20 @@ def get_outfile(infile, outfile):
     return outfile
 
 if __name__ == '__main__':
+    # 遍历重命名
+    path = os.walk("./photos")
+    count = 1
+    for root, dirs, files in path:
+        for f in files: 
+            os.rename(os.path.join(root, f),os.path.join(root,str(count)+".jpg"))
+            count+=1
+    # 遍历删除压缩图片
+    path = os.walk("./photos_compress")
+    for root, dirs, files in path:
+        for f in files:
+            os.remove(os.path.join(root, f))
+    # 遍历压缩图片
     path = os.walk("./photos")
     for root, dirs, files in path:
         for f in files: 
-            compress_image(os.path.join(root, f),os.path.join(root+"\\compress\\", f))
+            compress_image(os.path.join(root, f),os.path.join("./photos_compress/", f))
