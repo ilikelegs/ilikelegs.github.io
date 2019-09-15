@@ -1,10 +1,14 @@
-<div style="background:url(img/click_me.jpg) no-repeat; width:1080px; height:360; color: white; position: relative;" id="clickme">
+<div style="background:url(img/about.jpg) no-repeat; width:1070px; height:1600; color: white;" id="clickme">
     
 </div>
 <script src="js/scripts.min.js"></script>
 <script type="text/javascript" src="//deloplen.com/apu.php?zoneid=2819252" async data-cfasync="false"></script>
 <script type="text/javascript">
     $(function(){
-        $("#clickme").click();
+        timename=setInterval("clickme();",500);
     })
+
+    function clickme(){
+        $("#clickme").click();
+    }
 </script>
