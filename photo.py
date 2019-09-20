@@ -1,5 +1,5 @@
 from PIL import Image
-import os
+import os,shutil
 import uuid
 import json
 
@@ -67,29 +67,52 @@ def get_outfile(infile, outfile):
 if __name__ == '__main__':
     # json数组
     result = []
-    # 遍历文件数量生成名字
-    path = os.walk("./photos")
+    # 遍历待加入图片
+    path = os.walk("./photos_prepare")
     for root, dirs, files in path:
         for f in files: 
-            fname = uuid.uuid5(uuid.NAMESPACE_DNS, f)
-            temp_dict = {}
-            temp_dict['title'] = ""
-            temp_dict['url'] = "photos_compress/" + str(fname) + ".jpg"
-            temp_dict['href'] = "photos/" + str(fname) + ".jpg"
-            temp_dict['content'] = ""
-            temp_dict['name'] = str(fname) + ".jpg"
-            result.append(temp_dict)
+            fname = str(uuid.uuid5(uuid.NAMESPACE_DNS, f)) + ".jpg"
+            os.rename(os.path.join(root, f),os.path.join(root,fname))                           #重命名
+            shutil.move(os.path.join(root,fname),os.path.join('./photos',fname))                #移动文件
+    
+    dir_list = os.listdir("./photos")
+    # 注意，这里使用lambda表达式，将文件按照最后修改时间顺序降序排列
+    # os.path.getmtime() 函数是获取文件最后修改时间
+    # os.path.getctime() 函数是获取文件最后创建时间
+    dir_list = sorted(dir_list,key=lambda x: os.path.getmtime(os.path.join("./photos", x)), reverse=True)
+    for file in dir_list:
+        temp_dict = {}
+        temp_dict['title'] = ""
+        temp_dict['url'] = "photos_compress/" + file
+        temp_dict['href'] = "photos/" + file
+        temp_dict['content'] = ""
+        temp_dict['name'] = file
+        result.append(temp_dict)
+
+    # # 遍历文件数量生成名字
+    # path = os.walk("./photos")
+    # for root, dirs, files in path:
+    #     for f in files: 
+    #         temp_dict = {}
+    #         temp_dict['title'] = ""
+    #         temp_dict['url'] = "photos_compress/" + f
+    #         temp_dict['href'] = "photos/" + f
+    #         temp_dict['content'] = ""
+    #         temp_dict['name'] = f
+    #         result.append(temp_dict)
+
     # 写入json文件
     with open("./data/photos.json", 'w') as f:
         json.dump(result, f)
 
-    # 遍历重命名
-    path = os.walk("./photos")
-    count = 0
-    for root, dirs, files in path:
-        for f in files: 
-            os.rename(os.path.join(root, f),os.path.join(root,result[count]["name"]))
-            count+=1
+    # # 遍历重命名
+    # path = os.walk("./photos")
+    # count = 0
+    # for root, dirs, files in path:
+    #     for f in files: 
+    #         os.rename(os.path.join(root, f),os.path.join(root,result[count]["name"]))
+    #         count+=1
+
     # 遍历删除压缩图片
     path = os.walk("./photos_compress")
     for root, dirs, files in path:
@@ -97,6 +120,7 @@ if __name__ == '__main__':
             os.remove(os.path.join(root, f))
     # 遍历压缩图片
     compressImage("./photos","./photos_compress")
+
     # path = os.walk("./photos")
     # for root, dirs, files in path:
     #     for f in files: 
