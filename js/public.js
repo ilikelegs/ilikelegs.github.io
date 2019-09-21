@@ -11,10 +11,10 @@ $(function(){
     var description = todo.get('description'); 
     var instagram = todo.get('instagram'); 
     var address = todo.get('address'); 
-    $("title").text(title);
+    //$("title").text(title);
     $("#logo").text(title);
     $("#address").text(address);
-    $("meta[name='description']").attr('content',description);
+    //$("meta[name='description']").attr('content',description);
     $(".instagram_url").attr("href","https://www.instagram.com/blackholexgirl/");
     });
 })
